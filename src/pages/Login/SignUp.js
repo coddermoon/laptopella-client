@@ -32,6 +32,17 @@ const SignUp = () => {
               />
             </div>
             <div>
+              
+<label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+<select id="countries"  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900">
+  <option selected disabled>Choose Account type</option>
+ 
+  <option value="seller">Seller</option>
+  <option value="buyer">Buyer</option>
+</select>
+
+            </div>
+            <div>
               <label htmlFor="image" className="block mb-2 text-sm">
                 Select Image:
               </label>
