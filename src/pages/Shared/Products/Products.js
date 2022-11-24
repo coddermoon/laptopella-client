@@ -1,4 +1,5 @@
 import React from 'react';
+import PrimaryButton from '../../../components/Button/PrimaryButton';
 import ProductsCard from '../ProductsCard/ProductsCard';
 import ProductsCategory from '../ProductsCategory/ProductsCategory';
 
@@ -19,9 +20,14 @@ const Products = () => {
                 <ProductsCard/>
                 <ProductsCard/>
                 <ProductsCard/>
-                <ProductsCard/>
+               
+
+              
 
                 </div>
+               <div className="cta-btn my-6 text-center">
+               <PrimaryButton classes=' px-8 py-3 text-[#fff] font-semibold  hover:bg-gray-700' >Show All Product</PrimaryButton>
+               </div>
 
             </div>
 
