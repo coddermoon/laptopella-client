@@ -1,9 +1,19 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import PrimaryButton from '../../../components/Button/PrimaryButton';
 import ProductsCard from '../ProductsCard/ProductsCard';
 import ProductsCategory from '../ProductsCategory/ProductsCategory';
 
 const Products = () => {
+    const [products,setProducts]= useState([])
+
+    useEffect(()=>{
+        axios.get('data.json')
+        .then((res)=>setProducts(res.data))
+        .catch(err=>console.error(err)
+       
+        )
+    },[])
     return (
         <div className='container mx-auto my-12'>
            <div>
@@ -14,12 +24,14 @@ const Products = () => {
             <ProductsCategory/>
             <div >
                 <div className='grid gap-4 xm:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mx-auto items-center justify-center'>
-                <ProductsCard/>
-                <ProductsCard/>
-                <ProductsCard/>
-                <ProductsCard/>
-                <ProductsCard/>
-                <ProductsCard/>
+               
+               {
+                products.map(product=>  <ProductsCard
+                    key={product._id}
+                    product={product}
+                />)
+               }
+               
                
 
               
