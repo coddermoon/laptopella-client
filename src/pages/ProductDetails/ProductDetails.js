@@ -32,6 +32,16 @@ const ProductDetails = () => {
         </div>
 
     </div>
+
+    <div className="box border border-primary rounded mt-6">
+        <div className="content p-5">
+            <h2 className='font-semibold mb-4'>safety Tips</h2>
+            <ol className='p-4'>
+                <li className='list-disc'>Meet in a safe & public place</li>
+                <li className='list-disc'>Don’t pay in advance</li>
+            </ol>
+        </div>
+    </div>
     
 
     </div>
