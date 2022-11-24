@@ -47,7 +47,7 @@ const NavBar = () => {
             </span>
           </Dropdown.Header>
           {
-            profileLinks.map(link=> <Dropdown.Item><Link to={link.path}>{link.name}</Link></Dropdown.Item>)
+            profileLinks.map(link=> <Dropdown.Item key={link.id} ><Link to={link.path}>{link.name}</Link></Dropdown.Item>)
           }
           
          
