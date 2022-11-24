@@ -1,7 +1,24 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import toast from "react-hot-toast";
+
+import { Link} from "react-router-dom";
 import logo from '../../assets/image/logo.png'
+import { AuthContext } from "../../Contexts/AuthProvider";
+
 const NavBar = () => {
+ const {logOut,user}= useContext(AuthContext)
+ console.log(logOut,user)
+ const handleSignOut = ()=>{
+  logOut()
+  .then(res=>{
+    toast.success('logout successFull')
+  })
+  .catch(err=>{
+    toast.error(err.message)
+  })
+ }
+
   const navLinks = [
     { id:1, name: "Home", path: "/" },
     { id:2, name: "Products", path: "/shop" },
@@ -28,32 +45,41 @@ const NavBar = () => {
         Laptopella
         </span>
       </Navbar.Brand>
-      <div className="flex md:order-2">
-        <Dropdown
-          arrowIcon={false}
-          inline={true}
-          label={
-            <Avatar
-              alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              rounded={true}
-            />
-          }
-        >
-          <Dropdown.Header className="bg-[#fff]">
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">
-              name@flowbite.com
-            </span>
-          </Dropdown.Header>
-          {
-            profileLinks.map(link=> <Dropdown.Item key={link.id} ><Link to={link.path}>{link.name}</Link></Dropdown.Item>)
-          }
+      <div className="flex md:order-2 items-center">
+        {
+          user?.uid ?
           
+           <Dropdown
+           arrowIcon={false}
+           inline={true}
+           label={
+             <Avatar
+               alt="User settings"
+               img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+               rounded={true}
+             />
+           }
+         >
+           <Dropdown.Header className="bg-[#fff]">
+             <span className="block text-sm">Bonnie Green</span>
+             <span className="block truncate text-sm font-medium">
+               name@flowbite.com
+             </span>
+           </Dropdown.Header>
+           {
+             profileLinks.map(link=> <Dropdown.Item key={link.id} ><Link to={link.path}>{link.name}</Link></Dropdown.Item>)
+           }
+           
+          
+       
+           <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
+         </Dropdown>
+         :
+         <Link className="text-[#fff]" to='/login'>Login</Link>
          
-      
-          <Dropdown.Item>Sign out</Dropdown.Item>
-        </Dropdown>
+           
+        }
+       
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
