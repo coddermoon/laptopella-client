@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductsCard from '../ProductsCard/ProductsCard';
 import ProductsCategory from '../ProductsCategory/ProductsCategory';
 
 const Products = () => {
@@ -10,6 +11,19 @@ const Products = () => {
             </div>
             {/* products Options */}
             <ProductsCategory/>
+            <div >
+                <div className='grid gap-4 xm:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mx-auto items-center justify-center'>
+                <ProductsCard/>
+                <ProductsCard/>
+                <ProductsCard/>
+                <ProductsCard/>
+                <ProductsCard/>
+                <ProductsCard/>
+                <ProductsCard/>
+
+                </div>
+
+            </div>
 
         </div>
     );
