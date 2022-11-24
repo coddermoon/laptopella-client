@@ -4,7 +4,7 @@ import logo from '../../assets/image/logo.png'
 const NavBar = () => {
   const navLinks = [
     { id:1, name: "Home", path: "/" },
-    { id:2, name: "Products", path: "/" },
+    { id:2, name: "Products", path: "/shop" },
     { id:3, name: "cart", path: "/" },
     { id:4, name: "whislist", path: "/blog" },
   ];

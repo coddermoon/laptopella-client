@@ -8,7 +8,7 @@ import brand4 from '../../../assets/image/brands/brand-4.png'
 import "swiper/css/bundle";
 const Brands = () => {
 
-    const brandsPhoto = [brand1,brand2,brand3,brand4,brand2,brand3,brand4,]
+    const brandsPhoto = [brand1,brand2,brand3,brand4,brand2,brand3,brand4,,brand1,brand2,brand3]
 
     return (
         <div div className='container mx-auto my-5'>
@@ -19,9 +19,7 @@ const Brands = () => {
         <Swiper
           slidesPerView={8}
           spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
+         
           modules={[Pagination]}
           className="mySwiper"
         >
