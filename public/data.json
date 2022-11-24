@@ -5,13 +5,30 @@
             "title": "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
 
             "imageUrl":"https://cdn.thewirecutter.com/wp-content/media/2022/07/laptop-under-500-2048px-acer-1.jpg",
-
+            "price":{
+                "mainPrice":120,
+                "resalePrice":80
+               
+            },
+            "condition":"used",
+            "brand":"hp",
+            "model":"elitebook 2015",
+            
+            "useTime":"6 months",
             
             "ratings":{
                 "count":50,
                 "stars":4.8
-            }
+            },
+            "description":"🤑Price: 47,999 TK"
 
+        },
+        
+        "sellerInfo":{
+            "name":"Mahamodul Hasan Moon",
+            "phone":"+919999999999",
+            "isVerified":true,
+            "location":"dhaka"
         }
     }
 ]
