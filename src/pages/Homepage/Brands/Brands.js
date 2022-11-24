@@ -8,7 +8,15 @@ import brand4 from '../../../assets/image/brands/brand-4.png'
 import "swiper/css/bundle";
 const Brands = () => {
 
-    const brandsPhoto = [brand1,brand2,brand3,brand4,brand2,brand3,brand4,,brand1,brand2,brand3]
+    const brandsPhoto = [
+      {id:1, logo:brand1},
+      {id:2, logo:brand2},
+      {id:3, logo:brand3},
+      {id:4, logo:brand4},
+      {id:2, logo:brand2},
+      {id:4, logo:brand4},
+      {id:1, logo:brand1},
+    ]
 
     return (
         <div div className='container mx-auto my-5'>
@@ -30,7 +38,10 @@ const Brands = () => {
           </SwiperSlide>
 
           {
-            brandsPhoto.map(photo=> <SwiperSlide className='bg-[#fff]'>
+            brandsPhoto.map(photo=> <SwiperSlide
+            
+            key={photo.id}
+            className='bg-[#fff]'>
 
             <img src={photo} alt="" />
             
