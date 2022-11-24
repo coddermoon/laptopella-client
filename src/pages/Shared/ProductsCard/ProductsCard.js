@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 
 
 const ProductsCard = ({product}) => {
-    const {productInfo}= product
+    const {productInfo,_id}= product
     const {title,imageUrl,price,ratings} = productInfo
     const {resalePrice}= price
     const {count,stars}= ratings
@@ -40,7 +40,7 @@ const ProductsCard = ({product}) => {
 
                 
             </button>
-           <Link to="#" className="text-[#fff] bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">see Details</Link>
+           <Link to={`/shop/${_id}`} className="text-[#fff] bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">see Details</Link>
            </div>
         </div>
     </div>

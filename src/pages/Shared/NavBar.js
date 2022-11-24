@@ -40,7 +40,7 @@ const NavBar = () => {
             />
           }
         >
-          <Dropdown.Header>
+          <Dropdown.Header className="bg-[#fff]">
             <span className="block text-sm">Bonnie Green</span>
             <span className="block truncate text-sm font-medium">
               name@flowbite.com
