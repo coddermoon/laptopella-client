@@ -47,6 +47,22 @@ const ProductDetails = () => {
     </div>
   
 </div>
+
+{/* start description code */}
+
+<div className='flex items-end '>
+<span className='text-primary font-semibold text-2xl'>4500 $</span>
+
+<span className='ml-3 line-through font-bold'>2547 $</span>
+</div>
+<p>brand : HP</p>
+<p>condition:used</p>
+<h2 className='font-bold '>Description</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates et incidunt neque quisquam deleniti numquam tempore, nemo odio laborum at sint, ex atque cupiditate. Distinctio tempora nostrum error mollitia voluptate illum dolorum ducimus! At quos ducimus quidem, rerum quisquam odio deserunt quae! Aliquid, qui. Distinctio temporibus, eaque culpa aut quis modi fugit delectus eum facilis pariatur in, eos voluptatibus ullam atque, possimus at accusamus quidem iusto alias sint! Debitis dolore quas, sit voluptatum provident ab nam ullam cumque nulla sint quidem dolorum, eaque aliquid voluptates minus, corporis eligendi adipisci? Nulla, officiis labore! Illum debitis quisquam iste ut dolor ullam illo!</p>
+
+<button className='bg-primary py-2 font-bold text-[#fff]'>Checkout</button>
+
+
             </Card>
         </div>
     );
