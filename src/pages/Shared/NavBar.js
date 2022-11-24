@@ -9,6 +9,8 @@ import { AuthContext } from "../../Contexts/AuthProvider";
 const NavBar = () => {
  const {logOut,user}= useContext(AuthContext)
 
+
+
  const handleSignOut = ()=>{
   logOut()
   .then(res=>{
@@ -49,28 +51,29 @@ const NavBar = () => {
         {
           user?.uid ?
           
-           <Dropdown
+           <Dropdown className="bg-[#fff]"
            arrowIcon={false}
            inline={true}
            label={
              <Avatar
                alt="User settings"
-               img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+               img={user?.photoUrl}
                rounded={true}
              />
            }
          >
-           <Dropdown.Header className="bg-[#fff]">
-             <span className="block text-sm">Bonnie Green</span>
+           <Dropdown.Header >
+             <span className="block text-sm">{user?.displayName}</span>
              <span className="block truncate text-sm font-medium">
-               name@flowbite.com
+             {user?.email}
              </span>
            </Dropdown.Header>
+           <hr />
            {
              profileLinks.map(link=> <Dropdown.Item key={link.id} ><Link to={link.path}>{link.name}</Link></Dropdown.Item>)
            }
            
-          
+          <hr />
        
            <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
          </Dropdown>

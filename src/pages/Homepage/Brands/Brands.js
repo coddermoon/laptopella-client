@@ -13,9 +13,9 @@ const Brands = () => {
       {id:2, logo:brand2},
       {id:3, logo:brand3},
       {id:4, logo:brand4},
-      {id:2, logo:brand2},
-      {id:4, logo:brand4},
-      {id:1, logo:brand1},
+      {id:5, logo:brand2},
+      {id:6, logo:brand4},
+      {id:7, logo:brand1},
     ]
 
     return (
