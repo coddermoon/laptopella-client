@@ -7,6 +7,7 @@ import SignUp from "../pages/Login/SignUp";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import NotFound from "../pages/Shared/NotFound";
 import Shop from "../pages/ShopPage/Shop/Shop";
+import PrivateRoute from "./PrivetRoute";
 
 const routes = createBrowserRouter([
     {
@@ -24,7 +25,7 @@ const routes = createBrowserRouter([
             ,{
                 path:'/shop/:id',
                loader:({params})=> fetch(`https://laptopella.vercel.app/products/${params.id}`),
-                element:<ProductDetails/>
+                element:<PrivateRoute><ProductDetails/></PrivateRoute>
             }
         ]
 
