@@ -1,10 +1,10 @@
 import { Card } from 'flowbite-react';
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const ProductDetails = () => {
     const data = useLoaderData()
-    const {productInfo,sellerInfo}= data
+    const {productInfo,sellerInfo,_id}= data
     const {name,email,phone,location,isVerified}=sellerInfo
 
     const {title,imageUrl,description,price,brand,condition}= productInfo
@@ -72,7 +72,7 @@ const ProductDetails = () => {
 <h2 className='font-bold '>Description</h2>
 <p>{description}</p>
 
-<button className='bg-primary py-2 font-bold text-[#fff]'>Checkout</button>
+<Link to={`/payment/${_id}`} className='bg-primary py-2 font-bold text-[#fff] text-center'>Checkout</Link>
 
 
             </Card>
