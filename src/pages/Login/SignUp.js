@@ -1,15 +1,81 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../components/Button/PrimaryButton";
+import { AuthContext } from "../../Contexts/AuthProvider";
 import SocialSignIn from "../Shared/SocialSignIn";
 
 const SignUp = () => {
+const {createUserWithEmailPass,updateUser} = useContext(AuthContext)
+
+  
+
   const { register, handleSubmit, formState: { errors } } = useForm();
   const handleSignUp = (data) => {
     const image = data.image[0];
     const formData = new FormData()
-    console.log(formData)
+    formData.append('image', image);
+   
+    // image upload success
+    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGKEY}`
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    }
+      )
+      .then(res => res.json())
+      .then(imgData=>{
+        if(imgData.success){
+         const profileImg = imgData.data.url
+         const formInfo = {
+            
+            email: data.email,
+           accountType: data.accountType,
+            displayName: data.name,
+            photoURL: profileImg,
+            
+
+            
+         }
+
+        //  user information transfer in database
+
+        fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json', 
+              // authorization: `bearer ${localStorage.getItem('accessToken')}`
+          },
+          body: JSON.stringify(formInfo)
+      })
+      .then(res=>res.json())
+      .then(result=>{
+         // save user in database done 
+
+      // now create user with firebase 
+      createUserWithEmailPass(formInfo.email,data.password)
+      .then(result=>{
+        const user = result.user
+// updated data
+
+
+        updateUser(formInfo)
+        .then(res=> res.json())
+        
+      })
+      .catch(error=>console.error(error))
+      })
+     
+
+
+
+        }else{
+
+
+        }
+        
+      })
+
   }
   return (
     <div className="flex justify-center items-center pt-8">
@@ -45,18 +111,18 @@ const SignUp = () => {
             </div>
             <div>
               
-<label for="AccountType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Account Type</label>
+<label htmlFor="AccountType" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Account Type</label>
 <select 
 
 {...register("accountType", {
-  required: "Name is Required"
+  required: true
 })}
 
 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900">
   <option selected disabled>Choose Account type</option>
  
-  <option value="seller">Seller</option>
-  <option value="buyer">Buyer</option>
+  <option defaultValue="seller">Seller</option>
+  <option defaultValue="buyer">Buyer</option>
 </select>
 
             </div>
