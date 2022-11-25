@@ -1,9 +1,16 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../components/Button/PrimaryButton";
 import SocialSignIn from "../Shared/SocialSignIn";
 
 const SignUp = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const handleSignUp = (data) => {
+    const image = data.image[0];
+    const formData = new FormData()
+    console.log(formData)
+  }
   return (
     <div className="flex justify-center items-center pt-8">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
@@ -11,7 +18,7 @@ const SignUp = () => {
           <h1 className="my-3 text-4xl font-bold">Signup</h1>
           <p className="text-sm text-gray-400">Create a new account</p>
         </div>
-        <form
+        <form onSubmit={handleSubmit(handleSignUp)}
           noValidate=""
           action=""
           className="space-y-12 ng-untouched ng-pristine ng-valid"
@@ -24,17 +31,28 @@ const SignUp = () => {
               <input
                 type="text"
                 name="name"
-                id="name"
+                
+                {...register("name", {
+                  required: "Name is Required"
+              })}
+
                 required
                 placeholder="Enter Your Name Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
+               {errors.name && <p className='text-primary'>{errors.name.message}</p>}
             </div>
             <div>
               
-<label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-<select id="countries"  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900">
+<label for="AccountType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Account Type</label>
+<select 
+
+{...register("accountType", {
+  required: "Name is Required"
+})}
+
+className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900">
   <option selected disabled>Choose Account type</option>
  
   <option value="seller">Seller</option>
@@ -47,19 +65,26 @@ const SignUp = () => {
                 Select Image:
               </label>
               <input
-                type="file"
+              type='file'
+                {...register("image", {
+                  required: "Photo is Required"
+              })}
                 id="image"
                 name="image"
                 accept="image/*"
-                required
+                
               />
+               {errors.img && <p className='text-primary'>{errors.img.message}</p>}
+              
             </div>
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
                 Email address
               </label>
               <input
-                required
+               {...register("email", {
+                required:"enter a valid email address"
+            })}
                 type="email"
                 name="email"
                 id="email"
@@ -67,6 +92,7 @@ const SignUp = () => {
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
+               {errors.email && <p className='text-primary'>{errors.email.message}</p>}
             </div>
             <div>
               <div className="flex justify-between mb-2">
@@ -76,12 +102,15 @@ const SignUp = () => {
               </div>
               <input
                 type="password"
-                name="password"
-                id="password"
-                required
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: { value: 6, message: "Password must be 6 characters long" },
+                  pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
+              })}
                 placeholder="*******"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:outline-green-500 text-gray-900"
               />
+               {errors.password && <p className='text-primary'>{errors.password.message}</p>}
             </div>
           </div>
           <div className="space-y-2">
