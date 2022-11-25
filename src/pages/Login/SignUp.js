@@ -57,12 +57,13 @@ const {createUserWithEmailPass,updateUser} = useContext(AuthContext)
       .then(result=>{
         const user = result.user
 // updated data
+console.log(user  )
 
-
-        updateUser(formInfo)
-        .then(res=> res.json())
+        
+       
         
       })
+      .catch(err=>console.error(err))
       .catch(error=>console.error(error))
       })
      
