@@ -55,9 +55,15 @@ const {createUserWithEmailPass,updateUser} = useContext(AuthContext)
       // now create user with firebase 
       createUserWithEmailPass(formInfo.email,data.password)
       .then(result=>{
-        const user = result.user
+       
+        const userData = {
+          displayName: data.name,
+          photoURL:profileImg
+        }
 // updated data
-console.log(user  )
+updateUser(userData)
+.then(result=> console.log(result.user))
+.catch(err=> console.error(err))
 
         
        

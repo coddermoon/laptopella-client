@@ -8,6 +8,7 @@ import { AuthContext } from "../../Contexts/AuthProvider";
 
 const NavBar = () => {
  const {logOut,user}= useContext(AuthContext)
+ console.log(user)
 
 
 
@@ -57,7 +58,7 @@ const NavBar = () => {
            label={
              <Avatar
                alt="User settings"
-               img={user?.photoUrl}
+               img={user?.photoURL}
                rounded={true}
              />
            }
