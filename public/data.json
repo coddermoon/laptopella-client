@@ -1,7 +1,6 @@
 [
     {
-        "_id": "1",
-        "productInfo":{
+            "productInfo":{
             "title": "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
 
             "imageUrl":"https://cdn.thewirecutter.com/wp-content/media/2022/07/laptop-under-500-2048px-acer-1.jpg",
@@ -26,6 +25,7 @@
         
         "sellerInfo":{
             "name":"Mahamodul Hasan Moon",
+            "email":"coddermoon@gmail.com",
             "phone":"+919999999999",
             "isVerified":true,
             "location":"dhaka"

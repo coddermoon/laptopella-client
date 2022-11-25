@@ -1,12 +1,19 @@
 import { Card } from 'flowbite-react';
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 const ProductDetails = () => {
+    const data = useLoaderData()
+    const {productInfo,sellerInfo}= data
+    const {name,email,phone,location,isVerified}=sellerInfo
+
+    const {title,imageUrl,description,price,brand,condition}= productInfo
+    console.log(data)
     return (
         <div className='w-3/4 mx-auto my-10 shadow bg-[#fff]'>
             <Card className='border-none'>
                 
-    <h2>কফি টেবিল সহ সোফা সেট পাচ্ছেন অফার প্রাইসে</h2>
+    <h2 className='text-2xl font-semibold'>{title}</h2>
 
 <span><small>Posted on 18 Nov 1:41 pm, Gulshan, Dhaka</small></span>
 
@@ -15,7 +22,7 @@ const ProductDetails = () => {
     
     <div class="col-span-4">
         <button className='bg-[#E7EDEE] py-12 px-5'>
-        <img src="https://i.bikroy-st.com/kphi-ttebil-sh-sophaa-sett-paacchen-aphaar-praaise-for-sale-dhaka/cb9fbedc-0f34-487a-8825-a8980d7a711e/620/466/fitted.jpg" alt="" />
+        <img src={imageUrl} alt="" />
         </button>
      
     </div>
@@ -25,9 +32,14 @@ const ProductDetails = () => {
             <img src="https://i.bikroy-st.com/u/sapnobilashfurniture/7a95dc37-8941-4b20-8c94-fef144898e5b/72/54/cropped.jpg" alt="" />
         </div>
         <div className="info">
-            <h4 className='font-bold text-lg'>Mahamodul Hasan Moon</h4>
-            <span className=' text-primary px-1 py-1 mt-3'>verified member</span>
-            <p>+8801771517322</p>
+            <h4 className='font-bold text-lg'>{name}</h4>
+            <span className=' text-primary px-1 py-1 mt-3'>{
+                isVerified ? 'verifird' : 'unverifird' 
+            }</span>
+           
+            <p className='m-2'>{email}</p>
+            <p>{phone}</p>
+            <p className='text-primary font-semibold'>Location : {location}</p>
           
         </div>
 
@@ -51,14 +63,14 @@ const ProductDetails = () => {
 {/* start description code */}
 
 <div className='flex items-end '>
-<span className='text-primary font-semibold text-2xl'>4500 $</span>
+<span className='text-primary font-semibold text-2xl'>{price.resalePrice} $</span>
 
-<span className='ml-3 line-through font-bold'>2547 $</span>
+<span className='ml-3 line-through font-bold'>{price.mainPrice} $</span>
 </div>
-<p>brand : HP</p>
-<p>condition:used</p>
+<p>brand : {brand}</p>
+<p>condition:{condition}</p>
 <h2 className='font-bold '>Description</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates et incidunt neque quisquam deleniti numquam tempore, nemo odio laborum at sint, ex atque cupiditate. Distinctio tempora nostrum error mollitia voluptate illum dolorum ducimus! At quos ducimus quidem, rerum quisquam odio deserunt quae! Aliquid, qui. Distinctio temporibus, eaque culpa aut quis modi fugit delectus eum facilis pariatur in, eos voluptatibus ullam atque, possimus at accusamus quidem iusto alias sint! Debitis dolore quas, sit voluptatum provident ab nam ullam cumque nulla sint quidem dolorum, eaque aliquid voluptates minus, corporis eligendi adipisci? Nulla, officiis labore! Illum debitis quisquam iste ut dolor ullam illo!</p>
+<p>{description}</p>
 
 <button className='bg-primary py-2 font-bold text-[#fff]'>Checkout</button>
 
