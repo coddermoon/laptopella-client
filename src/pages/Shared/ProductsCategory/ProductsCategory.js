@@ -6,7 +6,7 @@ const ProductsCategory = () => {
     const [categoty,setCategory]= useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:5000/category')
+        axios.get('https://laptopella.vercel.app/category')
         .then(res=>setCategory(res.data))
     },[])
   

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import PrimaryButton from '../../components/Button/PrimaryButton';
@@ -26,6 +27,7 @@ const Login = () => {
             // const user = result.user;
             // console.log(user);
             setLoginUserEmail(data.email);
+            toast.success('successfully created account')
             navigate(from, { replace: true });
         })
         .catch(error => {

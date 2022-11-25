@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/Button/PrimaryButton";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import SocialSignIn from "../Shared/SocialSignIn";
@@ -8,7 +9,11 @@ import SocialSignIn from "../Shared/SocialSignIn";
 const SignUp = () => {
 const {createUserWithEmailPass,updateUser} = useContext(AuthContext)
 
-  
+const location = useLocation();
+const navigate = useNavigate();
+
+
+const from = location.state?.from?.pathname || '/';
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const handleSignUp = (data) => {
@@ -40,7 +45,7 @@ const {createUserWithEmailPass,updateUser} = useContext(AuthContext)
 
         //  user information transfer in database
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://laptopella.vercel.app/users', {
           method: 'POST',
           headers: {
               'content-type': 'application/json', 
@@ -62,7 +67,11 @@ const {createUserWithEmailPass,updateUser} = useContext(AuthContext)
         }
 // updated data
 updateUser(userData)
-.then(result=> console.log(result.user))
+.then(result=>{
+  toast.success('successfully created account')
+  navigate(from, { replace: true });
+
+})
 .catch(err=> console.error(err))
 
         

@@ -3,17 +3,12 @@ import React from 'react';
 const LazyLoading = () => {
     return (
        
-<div className="w-full h-screen border-2 rounded-md mx-auto mt-20">
-  <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
-    <div className="w-12 bg-gray-300 h-12 rounded-full ">
-    </div>
-        <div className="flex flex-col space-y-3">
-        <div className="w-36 bg-gray-300 h-6 rounded-md ">
-        </div>
-        <div className="w-24 bg-gray-300 h-6 rounded-md ">
-        </div>
-    </div>
-  </div>
+
+<div className='h-screen flex items-center justify-center'>
+  <h2 className='text-center text-8xl font-semibold'>L<span className='text-primary'>
+    
+  o
+    </span>ading</h2>
 </div>
 
     );
