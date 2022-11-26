@@ -43,6 +43,10 @@ const SideNav = ({children}) => {
                 <div className="icon"><FaSellsy/></div>
                 <div style={{display: isOpen ? "block" : "none"}} className="link_text">sellers</div>
             </NavLink>
+                <NavLink to='/dashboard/admin/users'  className="link" >
+                <div className="icon"><FaSellsy/></div>
+                <div style={{display: isOpen ? "block" : "none"}} className="link_text">Buyer</div>
+            </NavLink>
                 <NavLink to='/dashboard/reports'  className="link" >
                 <div className="icon"><GoReport/></div>
                 <div style={{display: isOpen ? "block" : "none"}} className="link_text">Reports</div>
