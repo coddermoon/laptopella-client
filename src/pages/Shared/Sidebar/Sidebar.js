@@ -1,36 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './sidebar.css'
-import { FaBars,FaRegChartBar, FaTh,  FaUserAlt } from 'react-icons/fa'
+import { FaBars, FaTh,  FaUserAlt } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom';
+import useAdmin from '../../../hooks/useAdmin';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const SideNav = ({children}) => {
+    const { user } = useContext(AuthContext);
+    const [userType] = useAdmin(user?.email)
+    
+
+
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
 
-    const menuItem=[
-        {
-            path:"/dashboard",
-            name:"Dashboard",
-            icon:<FaTh/>
-        },
-        {
-            path:"/dashboard/admin",
-            name:"Admin",
-            icon:<FaUserAlt/>
-        },
-        {
-            path:"/dashboard/users",
-            name:"Users",
-            icon:<FaUserAlt/>
-        },
-        {
-            path:"/dashboard/seller",
-            name:"Seller",
-            icon:<FaRegChartBar/>
-        },
-        
-       
-    ]
     return (
         <div className="container">
         <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
@@ -40,14 +23,45 @@ const SideNav = ({children}) => {
                     <FaBars onClick={toggle}/>
                 </div>
             </div>
-            {
-                menuItem.map((item, index)=>(
-                    <NavLink to={item.path} key={index} className="link" activeclassName="active">
-                        <div className="icon">{item.icon}</div>
-                        <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+
+           
+                    <NavLink to='/dashboard'  className="link" activeclassName="active">
+                        <div className="icon"><FaTh/></div>
+                        <div style={{display: isOpen ? "block" : "none"}} className="link_text">Dashboard</div>
                     </NavLink>
-                ))
+
+                    {
+                userType === "admin" && 
+
+                <NavLink to='/admin'  className="link" activeclassName="active">
+                <div className="icon"><FaUserAlt/></div>
+                <div style={{display: isOpen ? "block" : "none"}} className="link_text">Admin</div>
+            </NavLink>
             }
+           
+           {
+
+            userType === "Seller" && 
+            
+            <NavLink to='/seller'  className="link" activeclassName="active">
+            <div className="icon"><FaUserAlt/></div>
+            <div style={{display: isOpen ? "block" : "none"}} className="link_text">Resaler</div>
+        </NavLink>
+
+           }
+           {
+
+            userType === "Buyer" && 
+            <NavLink to='/user'  className="link" activeclassName="active">
+            <div className="icon"><FaUserAlt/></div>
+            <div style={{display: isOpen ? "block" : "none"}} className="link_text">User</div>
+        </NavLink>
+  
+           }
+                   
+                   
+                    
+           
         </div>
         <main>{children}</main>
      </div>
