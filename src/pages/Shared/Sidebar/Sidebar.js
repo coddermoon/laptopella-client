@@ -17,7 +17,7 @@ const SideNav = ({children}) => {
 
     return (
         <div>
-        <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
+        <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar sticky top-0">
             <div className="top_section flex items-left justify-between text-right">
                 {/* <h1 style={{display: isOpen ? "block" : "none"}} className="logo">La</h1> */}
                 <div style={{marginLeft: isOpen ? "0px" : "0px"}} className="bars">
