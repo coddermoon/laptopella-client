@@ -4,6 +4,7 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Homepage/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/Login/SignUp";
+import MyOrder from "../pages/Orders/MyOrders/MyOrder";
 import Payment from "../pages/Payment/Payment";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import NotFound from "../pages/Shared/NotFound";
@@ -22,6 +23,10 @@ const routes = createBrowserRouter([
             },{
                 path:'/shop',
                 element:<Shop/>
+            }
+            ,{
+                path:'/orders',
+                element:<MyOrder/>
             }
             ,{
                 path:'/shop/:id',
