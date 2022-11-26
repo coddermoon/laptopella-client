@@ -69,6 +69,7 @@ const routes = createBrowserRouter([
 },
 {
     path:'/dashboard/admin/seller',
+    loader:()=> fetch(`http://localhost:5000/allUsers`),
     element:<AllUsers/>
 }
         ]

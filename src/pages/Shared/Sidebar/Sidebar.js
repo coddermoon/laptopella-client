@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import './sidebar.css'
-import { FaBars, FaTh,  FaUserAlt } from 'react-icons/fa'
+import { FaBars, FaSellsy, FaTh,  FaUserAlt } from 'react-icons/fa'
+import { GoReport } from 'react-icons/go'
 import { NavLink } from 'react-router-dom';
 import useAdmin from '../../../hooks/useAdmin';
 import { AuthContext } from '../../../Contexts/AuthProvider';
@@ -39,11 +40,11 @@ const SideNav = ({children}) => {
                 <div style={{display: isOpen ? "block" : "none"}} className="link_text">Admin</div>
             </NavLink>
                 <NavLink to='/dashboard/admin/seller'  className="link" >
-                <div className="icon"><FaUserAlt/></div>
+                <div className="icon"><FaSellsy/></div>
                 <div style={{display: isOpen ? "block" : "none"}} className="link_text">sellers</div>
             </NavLink>
                 <NavLink to='/dashboard/reports'  className="link" >
-                <div className="icon"><FaUserAlt/></div>
+                <div className="icon"><GoReport/></div>
                 <div style={{display: isOpen ? "block" : "none"}} className="link_text">Reports</div>
             </NavLink>
               </div>
