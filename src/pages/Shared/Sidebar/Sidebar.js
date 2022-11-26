@@ -9,35 +9,27 @@ const SideNav = ({children}) => {
 
     const menuItem=[
         {
-            path:"/",
+            path:"/dashboard",
             name:"Dashboard",
             icon:<FaTh/>
         },
         {
-            path:"/about",
-            name:"About",
+            path:"/admin",
+            name:"Admin",
             icon:<FaUserAlt/>
         },
         {
-            path:"/analytics",
-            name:"Analytics",
+            path:"/users",
+            name:"Users",
+            icon:<FaUserAlt/>
+        },
+        {
+            path:"/seller",
+            name:"Seller",
             icon:<FaRegChartBar/>
         },
-        {
-            path:"/comment",
-            name:"Comment",
-            icon:<FaCommentAlt/>
-        },
-        {
-            path:"/product",
-            name:"Product",
-            icon:<FaShoppingBag/>
-        },
-        {
-            path:"/productList",
-            name:"Product List",
-            icon:<FaThList/>
-        }
+        
+       
     ]
     return (
         <div className="container">
