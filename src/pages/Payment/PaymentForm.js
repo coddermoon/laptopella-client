@@ -6,20 +6,21 @@ import { AuthContext } from "../../Contexts/AuthProvider";
 
 const PaymentForm = ({ product }) => {
   const { user } = useContext(AuthContext);
-
+const [processing,setProcessing]= useState(false)
   const [cardError, setCardError] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const [success, setSuccess] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const { productInfo } = product;
+  const { productInfo, _id } = product;
+
   const { price } = productInfo;
   const mainPrice = price.resalePrice;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://laptopella.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ price }),
@@ -49,7 +50,7 @@ const PaymentForm = ({ product }) => {
     } else {
       setCardError("");
     }
-
+    setProcessing(true);
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -60,17 +61,37 @@ const PaymentForm = ({ product }) => {
           },
         },
       });
-      if (confirmError) {
-        setCardError(confirmError.message);
-        return
-      }
-      if(paymentIntent.status === "succeeded"){
-
-       
-        setSuccess("Payment success!");
-        setTransactionId(paymentIntent.id);
-
-      }
+    if (confirmError) {
+      setCardError(confirmError.message);
+      return;
+    }
+    if (paymentIntent.status === "succeeded") {
+      const payment = {
+        price: mainPrice,
+        product_id: _id,
+        email: user.email,
+        transactionId: paymentIntent.id,
+        
+      };
+      // post information in  database
+      fetch("https://laptopella.vercel.app/payments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payment)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            console.log(data);
+            
+            setSuccess("Payment success!");
+            setTransactionId(paymentIntent.id);
+          }
+        });
+    }
+    setProcessing(false);
   };
 
   return (
@@ -96,7 +117,7 @@ const PaymentForm = ({ product }) => {
         <div className="text-center">
           <Button
             type="submit"
-            disabled={!clientSecret || !stripe}
+            disabled={!clientSecret || !stripe  || processing}
             className="bg-primary my-6 font-bold text-[#fff] text-center"
           >
             pay
@@ -104,12 +125,15 @@ const PaymentForm = ({ product }) => {
         </div>
       </form>
       <p className="text-red-500">{cardError}</p>
-      {
-            success && <div>
-                <p className='text-green-500'>{success}</p>
-                <p>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
-            </div>
-        }
+      {success && (
+        <div>
+          <p className="text-green-500">{success}</p>
+          <p>
+            Your transactionId:{" "}
+            <span className="font-bold">{transactionId}</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 };
