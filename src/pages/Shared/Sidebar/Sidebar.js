@@ -15,7 +15,7 @@ const SideNav = ({children}) => {
     const toggle = () => setIsOpen (!isOpen);
 
     return (
-        <div className="container">
+        <div>
         <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
             <div className="top_section flex items-left justify-between text-right">
                 {/* <h1 style={{display: isOpen ? "block" : "none"}} className="logo">La</h1> */}
@@ -25,7 +25,7 @@ const SideNav = ({children}) => {
             </div>
 
            
-                    <NavLink to='/dashboard'  className="link" activeclassName="active">
+                    <NavLink to='/dashboard'  className="link" >
                         <div className="icon"><FaTh/></div>
                         <div style={{display: isOpen ? "block" : "none"}} className="link_text">Dashboard</div>
                     </NavLink>
@@ -33,17 +33,27 @@ const SideNav = ({children}) => {
                     {
                 userType === "admin" && 
 
-                <NavLink to='/admin'  className="link" activeclassName="active">
+              <div>
+                  <NavLink to='/dashboard/admin'  className="link" >
                 <div className="icon"><FaUserAlt/></div>
                 <div style={{display: isOpen ? "block" : "none"}} className="link_text">Admin</div>
             </NavLink>
+                <NavLink to='/dashboard/admin/seller'  className="link" >
+                <div className="icon"><FaUserAlt/></div>
+                <div style={{display: isOpen ? "block" : "none"}} className="link_text">sellers</div>
+            </NavLink>
+                <NavLink to='/dashboard/reports'  className="link" >
+                <div className="icon"><FaUserAlt/></div>
+                <div style={{display: isOpen ? "block" : "none"}} className="link_text">Reports</div>
+            </NavLink>
+              </div>
             }
            
            {
 
             userType === "Seller" && 
             
-            <NavLink to='/seller'  className="link" activeclassName="active">
+            <NavLink to='/dashboard/seller'  className="link">
             <div className="icon"><FaUserAlt/></div>
             <div style={{display: isOpen ? "block" : "none"}} className="link_text">Resaler</div>
         </NavLink>
@@ -52,7 +62,7 @@ const SideNav = ({children}) => {
            {
 
             userType === "Buyer" && 
-            <NavLink to='/user'  className="link" activeclassName="active">
+            <NavLink to='/dashboard/user'  className="link" >
             <div className="icon"><FaUserAlt/></div>
             <div style={{display: isOpen ? "block" : "none"}} className="link_text">User</div>
         </NavLink>
