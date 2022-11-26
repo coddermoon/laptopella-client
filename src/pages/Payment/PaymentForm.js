@@ -15,7 +15,7 @@ const [processing,setProcessing]= useState(false)
   const elements = useElements();
   const { productInfo, _id } = product;
 
-  const { price } = productInfo;
+  const { price,title } = productInfo;
   const mainPrice = price.resalePrice;
 
   useEffect(() => {
@@ -67,6 +67,7 @@ const [processing,setProcessing]= useState(false)
     }
     if (paymentIntent.status === "succeeded") {
       const payment = {
+        name:title,
         price: mainPrice,
         product_id: _id,
         email: user.email,
@@ -84,7 +85,7 @@ const [processing,setProcessing]= useState(false)
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            console.log(data);
+           
             
             setSuccess("Payment success!");
             setTransactionId(paymentIntent.id);
