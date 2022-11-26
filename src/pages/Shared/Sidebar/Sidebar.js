@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './sidebar.css'
-import { FaBars, FaCommentAlt, FaRegChartBar, FaShoppingBag, FaTh, FaThList, FaUserAlt } from 'react-icons/fa'
+import { FaBars,FaRegChartBar, FaTh,  FaUserAlt } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom';
 
 const SideNav = ({children}) => {
@@ -14,17 +14,17 @@ const SideNav = ({children}) => {
             icon:<FaTh/>
         },
         {
-            path:"/admin",
+            path:"/dashboard/admin",
             name:"Admin",
             icon:<FaUserAlt/>
         },
         {
-            path:"/users",
+            path:"/dashboard/users",
             name:"Users",
             icon:<FaUserAlt/>
         },
         {
-            path:"/seller",
+            path:"/dashboard/seller",
             name:"Seller",
             icon:<FaRegChartBar/>
         },
