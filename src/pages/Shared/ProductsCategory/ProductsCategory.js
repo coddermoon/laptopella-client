@@ -5,9 +5,17 @@ import React, { useEffect, useState } from 'react';
 const ProductsCategory = () => {
     const [categoty,setCategory]= useState([])
 
+
     useEffect(()=>{
         axios.get('https://laptopella.vercel.app/category')
-        .then(res=>setCategory(res.data))
+        .then(res=>{
+            const data = res.data
+
+            const withoutDuplicates = [...new Set(data)];
+            
+            setCategory(withoutDuplicates)
+        
+        })
     },[])
   
     return (

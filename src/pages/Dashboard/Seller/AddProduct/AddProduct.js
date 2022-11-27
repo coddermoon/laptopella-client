@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 const fileTypes = ["JPG", "PNG", "GIF"];
 
@@ -83,7 +84,18 @@ const ttsData = {
           location: location
         }
       } 
-      console.log(ttsData)
+     fetch(`http://localhost:5000/products`,{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(ttsData),
+     }) 
+     .then(res=> res.json())
+     .then(result=>{
+        toast.success("product added successfully")
+     })
+     .catch(err=> toast.error(err.message))
 
                 
             }
