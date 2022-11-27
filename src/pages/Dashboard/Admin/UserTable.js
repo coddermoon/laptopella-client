@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import toast from 'react-hot-toast';
 
@@ -6,16 +7,23 @@ const UserTable = ({users}) => {
   
     const handleDeleteUser = (email)=>{
 
+
+
+    fetch(`http://localhost:5000/dashboard/user/delete/${email}`,{
+        method:'DELETE',
+    })
+    .then(res=>res.json())
+    .then(result=>{
+        toast.success("delete successfully")
+    })
+    .catch(err=>console.error(err.message))
+
+
+
+
         
 
-        fetch(`http://localhost:5000/dashboard/user/delete/${email}`,{
-            method:'DELETE',
-        })
-        .then(res=>res.json())
-        .then(result=>{
-            toast.success("delete successfully")
-        })
-        .catch(err=>console.error(err))
+       
         
        
     }
@@ -69,7 +77,7 @@ const UserTable = ({users}) => {
                {user._id}
             </td>
             <td class="py-4 px-6">
-              <button onClick={()=>handleDeleteUser(user.email)} className='bg-[#ff0000] text-[#fff] py-1 px-2'>delete</button>
+              <button onClick={()=>handleDeleteUser(user.email,user.uid)} className='bg-[#ff0000] text-[#fff] py-1 px-2'>delete</button>
             </td>
         </tr>
               
