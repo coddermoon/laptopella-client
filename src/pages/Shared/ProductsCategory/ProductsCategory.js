@@ -28,7 +28,7 @@ const ProductsCategory = () => {
     {
         categoty.map((item, index)=> <button
         key={index}
-        className='bg-primary px-3 py-1 text-[#fff] m-2 shadow-lg'>{item}</button>
+        className='bg-primary px-3 py-1 text-[#fff] m-2 shadow-lg'>{item.toUpperCase()}</button>
             
        )
     }
