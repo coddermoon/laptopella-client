@@ -1,13 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/Button/PrimaryButton";
 import { AuthContext } from "../../Contexts/AuthProvider";
+import useToken from "../../hooks/UseToken";
+
 import SocialSignIn from "../Shared/SocialSignIn";
 
 const SignUp = () => {
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
   const { createUserWithEmailPass, updateUser } = useContext(AuthContext);
+const[token]= useToken(createdUserEmail)
+
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -52,6 +58,7 @@ const SignUp = () => {
                 .then((result) => {
                   const user = result.user
                   const uid = user.uid
+                  setCreatedUserEmail(user.email);
                   const dbForm = {...formInfo, uid: uid}
                   const userData = {
                     displayName: data.name,
@@ -77,8 +84,10 @@ fetch("https://laptopella.vercel.app/users", {
 })
 .then((res) => res.json())
 .then(result=>{
+ 
+  
   toast.success("successfully created account");
-  navigate(from, { replace: true });
+ 
 
 })
 .catch((err) => console.error(err));
@@ -98,6 +107,9 @@ fetch("https://laptopella.vercel.app/users", {
         } else {
         }
       });
+      if(token){
+        navigate(from, { replace: true });
+    }
   };
   return (
     <div className="flex justify-center items-center pt-8">

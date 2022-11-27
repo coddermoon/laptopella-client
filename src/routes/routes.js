@@ -18,6 +18,8 @@ import Buyer from '../pages/Dashboard/Buyer/Buyer'
 
 import SellerProducts from "../pages/Dashboard/Seller/Products/SellerProducts";
 import AddProduct from "../pages/Dashboard/Seller/AddProduct/AddProduct";
+import AdminRoute from "./AdminRoute";
+import CommingSoon from "../pages/Shared/Comming/CommingSoon";
 
 const routes = createBrowserRouter([
     {
@@ -35,7 +37,7 @@ const routes = createBrowserRouter([
             ,{
                 path:'/orders',
                
-                element:<MyOrder/>
+                element:<PrivateRoute><MyOrder/></PrivateRoute>
             }
             ,{
                 path:'/shop/:id',
@@ -61,17 +63,21 @@ const routes = createBrowserRouter([
         element:<NotFound/>
     },{
         path:'/dashboard',
-        element:<DashboardLayout/>,
+        element: <AdminRoute><DashboardLayout/></AdminRoute>,
         children:[
 
 {
             path:'/dashboard/admin',
-            element:<Admin/>
+            element:<AdminRoute><CommingSoon/></AdminRoute>
+},
+{
+            path:'/dashboard',
+            element:<CommingSoon/>
 },
 {
     path:'/dashboard/admin/seller',
     loader:()=> fetch(`http://localhost:5000/allUsers?AccountType=Seller`),
-    element:<AllUsers/>
+    element:<AdminRoute><AllUsers/></AdminRoute>
 },
 {
     path:'/dashboard/admin/users',
@@ -79,11 +85,11 @@ const routes = createBrowserRouter([
     element: <Buyer/>
 },{
     path:'/dashboard/seller/products',
-    element:<SellerProducts/>
+    element:<AdminRoute><SellerProducts/></AdminRoute>
 },
 {
     path:'/dashboard/seller/addProduct',
-    element: <AddProduct/>
+    element:<AdminRoute> <AddProduct/></AdminRoute>
 },
 {
     path:'/dashboard/user',

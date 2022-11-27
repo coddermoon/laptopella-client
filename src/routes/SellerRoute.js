@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import LazyLoading from '../components/LazyLoading';
 import { AuthContext } from '../Contexts/AuthProvider';
-import useAdmin from '../hooks/useAdmin';
+import UseSeller from '../hooks/UseSeller';
 
-const AdminRoute = ({children}) => {
+const SellerRoute = ({children}) => {
     const { user, loading } = useContext(AuthContext);
-    const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+    const [isAdmin, isAdminLoading] = UseSeller(user?.email);
     const location = useLocation();
 
-    if ( isAdminLoading) {
+    if (loading || isAdminLoading) {
         return <LazyLoading/>
     }
 
@@ -20,4 +20,4 @@ const AdminRoute = ({children}) => {
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 
-export default AdminRoute;
+export default SellerRoute;

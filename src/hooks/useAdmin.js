@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Navigate } from "react-router-dom";
 
 const useAdmin = email => {
     const [userType, setUserType] = useState(false);
@@ -14,6 +15,7 @@ const useAdmin = email => {
                 })
         }
     }, [email])
+    
     return [userType, isUserLoading]
 }
 
