@@ -1,10 +1,172 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FileUploader } from 'react-drag-drop-files';
+import { useForm } from 'react-hook-form';
+const fileTypes = ["JPG", "PNG", "GIF"];
+
 
 const AddProduct = () => {
+ 
+    
+    const [imageUrl,setImageUrl] = useState('')
+    const [file, setFile] = useState(null);
+    const handleChange = (file) => {
+      setFile(file);
+    };
+
+    console.log(file)
+// handle form
+const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleAddProduct = (data)=>{
+
+const productData = data
+const {title,brand,count,description,location,rating,model,usedTime,condition,phone}=data
+
+const ttsData = {
+    
+        productInfo: {
+          title: title,
+          imageUrl: imageUrl,
+          price: {
+            mainPrice: 120,
+            resalePrice: 80
+          },
+          condition: condition,
+          brand: brand,
+          model: model,
+          useTime:usedTime,
+          ratings: {
+            count: count,
+            stars:rating,
+          },
+          description: description,
+        },
+        sellerInfo: {
+          name: "Mahamodul Hasan Moon",
+          email: "coddermoon@gmail.com",
+          phone: phone,
+          
+          location: location
+        }
+      } 
+  
+
+}
+
+
     return (
-        <div>
-            add new Product  product Page
-        </div>
+        <section className="p-6 dark:bg-gray-800 my-10 bg-[main] dark:text-gray-50 mx-auto  bg-[#ddd]">
+        <form onSubmit={handleSubmit(handleAddProduct)} novalidate="" action="" className=" flex flex-col mx-auto space-y-12 ng-untouched ng-pristine mx-auto  ng-valid w-2/3 mt-10 bg-[#fff] mb-10">
+            <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
+               
+                <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+                    <div className="col-span-full sm:col-span-3">
+                        <label for="firstname" className="text-sm">Product Title</label>
+                        <input 
+                        {...register("title", {
+                            required: "title is Required",
+                          })}
+                        type="text" placeholder="title" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+                    <div className="col-span-full sm:col-span-3">
+                        <label for="lastname" className="text-sm">Brand</label>
+                        <input
+                        {...register("brand", {
+                            required: "Name is Required",
+                          })}
+                        id="Brand" type="text" placeholder="Brand" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+                  
+                    <div className="col-span-full">
+                        <label for="address" className="text-sm">Description</label>
+                        <textarea
+                        
+                        {...register("description", {
+                            required: "description is Required",
+                          })}
+
+                        id="address" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+
+                    <div className="col-span-full">
+                        <label for="address" className="text-sm">phone</label>
+                        <textarea
+                        
+                        {...register("phone", {
+                            required: "phone is Required",
+                          })}
+
+                        id="address" type="number" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+                    <div className="col-span-full sm:col-span-2">
+                        <label for="city" className="text-sm">Location</label>
+                        <input
+                        {...register("location", {
+                            required: "location is Required",
+                          })}
+                        id="city" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+                    <div className="col-span-full sm:col-span-2">
+                        <label for="state" className="text-sm">Model</label>
+                        <input
+                        
+                        {...register("model", {
+                            required: "model is Required",
+                          })}
+
+                        id="state" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+                    <div className="col-span-full sm:col-span-2">
+                        <label for="zip" className="text-sm">Use time</label>
+                        <input
+                        
+                        {...register("usedTime", {
+                            required: "usedTime is Required",
+                          })}
+
+                        id="zip" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+                    <div className="col-span-full sm:col-span-2">
+                        <label for="city" className="text-sm">Ratings</label>
+                        <input
+                        {...register("ratings", {
+                            required: "rating is Required",
+                          })}
+                        id="city" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+                    <div className="col-span-full sm:col-span-2">
+                        <label for="state" className="text-sm">Count</label>
+                        <input
+                        {...register("count", {
+                            required: "total rating is Required",
+                          })}
+                        id="state" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+
+                    <div className="col-span-full sm:col-span-2">
+                        <label for="state" className="text-sm">condition</label>
+                        <input
+                        {...register("condition", {
+                            required: "condition Required",
+                          })}
+                        id="state" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                    </div>
+                    
+                </div>
+               
+
+            </fieldset>
+            <div className='mx-auto'>
+            <FileUploader  handleChange={handleChange} name="file" types={fileTypes} />
+            </div>
+            <button type='submit' className='text-center bg-primary py-2 '>Add Products</button>
+          
+        </form>
+    </section>
     );
 };
 

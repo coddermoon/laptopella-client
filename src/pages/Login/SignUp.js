@@ -9,11 +9,9 @@ import useToken from "../../hooks/UseToken";
 import SocialSignIn from "../Shared/SocialSignIn";
 
 const SignUp = () => {
-  const [createdUserEmail, setCreatedUserEmail] = useState('')
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
   const { createUserWithEmailPass, updateUser } = useContext(AuthContext);
-const[token]= useToken(createdUserEmail)
-
-
+  const [token] = useToken(createdUserEmail);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,6 +23,7 @@ const[token]= useToken(createdUserEmail)
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
   const handleSignUp = (data) => {
     const image = data.image[0];
     const formData = new FormData();
@@ -49,66 +48,52 @@ const[token]= useToken(createdUserEmail)
 
           //  user information transfer in database
 
-       
-            
-              // save user in database done
+          // save user in database done
 
-              // now create user with firebase
-              createUserWithEmailPass(formInfo.email, data.password)
-                .then((result) => {
-                  const user = result.user
-                  const uid = user.uid
-                  setCreatedUserEmail(user.email);
-                  const dbForm = {...formInfo, uid: uid}
-                  const userData = {
-                    displayName: data.name,
-                    photoURL: profileImg,
-                  };
+          // now create user with firebase
+          createUserWithEmailPass(formInfo.email, data.password)
+            .then((result) => {
+              const user = result.user;
+              const uid = user.uid;
+              setCreatedUserEmail(user.email);
+              const dbForm = { ...formInfo, uid: uid };
+              const userData = {
+                displayName: data.name,
+                photoURL: profileImg,
+              };
 
-                  // database stored data pat
+              // database stored data pat
 
-                  // updated data
-                  updateUser(userData)
-                    .then((result) => {
+              // updated data
+              updateUser(userData).then((result) => {
+                // send database
 
-
-// send database 
-
-fetch("https://laptopella.vercel.app/users", {
-  method: "POST",
-  headers: {
-    "content-type": "application/json",
-    // authorization: `bearer ${localStorage.getItem('accessToken')}`
-  },
-  body: JSON.stringify(dbForm),
-})
-.then((res) => res.json())
-.then(result=>{
- 
-  
-  toast.success("successfully created account");
- 
-
-})
-.catch((err) => console.error(err));
-
-
-
-
-
-                      // toast.success("successfully created account");
-                      // navigate(from, { replace: true });
-                    })
-                    // .catch((err) => console.error(err));
+                fetch("https://laptopella.vercel.app/users", {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                  },
+                  body: JSON.stringify(dbForm),
                 })
-                .catch((err) => console.error(err))
-                .catch((error) => console.error(error));
-           
+                  .then((res) => res.json())
+                  .then((result) => {
+                    toast.success("successfully created account");
+                  })
+                  .catch((err) => console.error(err));
+
+                // toast.success("successfully created account");
+                // navigate(from, { replace: true });
+              });
+              // .catch((err) => console.error(err));
+            })
+            .catch((err) => console.error(err))
+            .catch((error) => console.error(error));
         } else {
         }
       });
-      if(token){
-        navigate(from, { replace: true });
+    if (token) {
+      navigate(from, { replace: true });
     }
   };
   return (
