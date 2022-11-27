@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import UseToken from '../../hooks/UseToken';
 import SocialSignIn from '../Shared/SocialSignIn';
 
 
@@ -13,7 +14,7 @@ const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [loginError, setLoginError] = useState('');
   const [loginUserEmail, setLoginUserEmail] = useState('');
-
+  const [token] = UseToken(loginUserEmail);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -35,7 +36,9 @@ const Login = () => {
             setLoginError(error.message);
         });
 }
-
+if (token) {
+  navigate(from, { replace: true });
+}
 
     return (
       <div className='flex justify-center items-center pt-8'>

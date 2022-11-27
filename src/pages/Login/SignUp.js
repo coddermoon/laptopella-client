@@ -9,6 +9,7 @@ import SocialSignIn from "../Shared/SocialSignIn";
 const SignUp = () => {
 const {createUserWithEmailPass,updateUser} = useContext(AuthContext)
 
+
 const location = useLocation();
 const navigate = useNavigate();
 

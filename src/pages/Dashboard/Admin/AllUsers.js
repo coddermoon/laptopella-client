@@ -1,9 +1,20 @@
+import { useQuery } from '@tanstack/react-query';
+
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+
 import UserTable from './UserTable';
 
+
 const AllUsers = () => {
-    const users = useLoaderData()
+    const accountType = "Seller"
+    const {data:users=[]}= useQuery({
+        queryKey: ['accountType',accountType],
+        queryFn: () => fetch(`http://localhost:5000/allUsers?AccountType=${accountType}`)
+        .then(res=>res.json())
+    })
+   
+  
+
     
     return (
        <UserTable

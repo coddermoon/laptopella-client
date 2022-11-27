@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../firebase/firebase.config';
 import LazyLoading from '../components/LazyLoading';
 
@@ -40,6 +40,14 @@ const AuthProvider = ({children}) => {
 const socialSignIn = (provider)=>{
     return signInWithPopup(auth,provider)
 }
+
+const deleteUserInfo = (user)=>{
+
+    return deleteUser(user)
+
+}
+
+
 // ovsrver
     useEffect( () =>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
@@ -47,7 +55,7 @@ const socialSignIn = (provider)=>{
             setUser(currentUser);
             setLoading(false);
         });
-
+console.log(user) 
         return () => unsubscribe();
 
     }, [])
@@ -63,7 +71,8 @@ const socialSignIn = (provider)=>{
         logOut,
         user,
         loading,
-        socialSignIn
+        socialSignIn,
+        deleteUserInfo
     }
 
     return (

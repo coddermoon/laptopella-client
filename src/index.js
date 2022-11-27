@@ -7,13 +7,21 @@ import reportWebVitals from './reportWebVitals';
 import {  RouterProvider } from 'react-router-dom';
 import routes from './routes/routes';
 import AuthProvider from './Contexts/AuthProvider';
+import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthProvider>
+   <QueryClientProvider client={queryClient} >
+   <AuthProvider>
+    <div><Toaster/></div>
     <RouterProvider router={routes} />
     </AuthProvider>
+   </QueryClientProvider>
    
   </React.StrictMode>
 );
