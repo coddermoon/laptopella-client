@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../../../Contexts/AuthProvider';
 const fileTypes = ["JPG", "PNG", "GIF"];
 
 
 const AddProduct = () => {
+
+    const {user}= useContext(AuthContext)
  
     
     const [imageUrl,setImageUrl] = useState('')
     const [file, setFile] = useState(null);
     const handleChange = (file) => {
-      setFile(file);
+
+        
+        const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_ProduckUploadKey}`;
+        fetch(url, {
+          method: "POST",
+          body: file,
+        })
+          .then((res) => res.json())
+          .then(data=>{
+            console.log(data)
+          })
+          .catch(err=>console.error(err.message))
     };
 
     console.log(file)
@@ -22,15 +36,31 @@ const {
   } = useForm();
 
   const handleAddProduct = (data)=>{
+    const image = data.image[0]
+    const formData = new FormData();
+    formData.append("image", image);
 
-const productData = data
-const {title,brand,count,description,location,rating,model,usedTime,condition,phone}=data
+  
+
+        // image upload success
+        const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGKEY}`;
+        fetch(url, {
+          method: "POST",
+          body: formData,
+        })
+        .then(res=>res.json())
+        .then(imgData=>{
+            if(imgData.success){
+                
+
+
+ const {title,brand,count,description,location,rating,model,usedTime,condition,phone}=data
 
 const ttsData = {
     
         productInfo: {
           title: title,
-          imageUrl: imageUrl,
+          imageUrl: imgData.data.url,
           price: {
             mainPrice: 120,
             resalePrice: 80
@@ -46,13 +76,22 @@ const ttsData = {
           description: description,
         },
         sellerInfo: {
-          name: "Mahamodul Hasan Moon",
-          email: "coddermoon@gmail.com",
+          name: user.displayName,
+          email: user.email,
           phone: phone,
           
           location: location
         }
       } 
+      console.log(ttsData)
+
+                
+            }
+        })
+    
+
+
+
   
 
 }
@@ -162,6 +201,24 @@ const ttsData = {
             </fieldset>
             <div className='mx-auto'>
             <FileUploader  handleChange={handleChange} name="file" types={fileTypes} />
+            </div>
+
+            <div>
+              <label htmlFor="image" className="block mb-2 text-sm">
+                Select Image:
+              </label>
+              <input
+                type="file"
+                {...register("image", {
+                  required: "Photo is Required",
+                })}
+                id="image"
+                name="image"
+                accept="image/*"
+              />
+              {errors.img && (
+                <p className="text-primary">{errors.img.message}</p>
+              )}
             </div>
             <button type='submit' className='text-center bg-primary py-2 '>Add Products</button>
           
