@@ -8,7 +8,7 @@ const SellerProducts = () => {
 
     const {data:products=[]}= useQuery({
         queryKey: ['accountType'],
-        queryFn: () => fetch(`http://localhost:5000/seller/product/${user.email}`)
+        queryFn: () => fetch(`https://laptopella.vercel.app/seller/product/${user.email}`)
         .then(res=>res.json())
     })
 

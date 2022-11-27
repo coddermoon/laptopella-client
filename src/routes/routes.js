@@ -76,7 +76,7 @@ const routes = createBrowserRouter([
 },
 {
     path:'/dashboard/admin/seller',
-    loader:()=> fetch(`http://localhost:5000/allUsers?AccountType=Seller`),
+    loader:()=> fetch(`https://laptopella.vercel.app/allUsers?AccountType=Seller`),
     element:<AdminRoute><AllUsers/></AdminRoute>
 },
 {

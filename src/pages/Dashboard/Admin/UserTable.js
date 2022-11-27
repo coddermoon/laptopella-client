@@ -9,7 +9,7 @@ const UserTable = ({users}) => {
 
 
 
-    fetch(`http://localhost:5000/dashboard/user/delete/${email}`,{
+    fetch(`https://laptopella.vercel.app/dashboard/user/delete/${email}`,{
         method:'DELETE',
     })
     .then(res=>res.json())

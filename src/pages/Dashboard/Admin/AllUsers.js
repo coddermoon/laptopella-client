@@ -9,7 +9,7 @@ const AllUsers = () => {
     const accountType = "Seller"
     const {data:users=[]}= useQuery({
         queryKey: ['accountType',accountType],
-        queryFn: () => fetch(`http://localhost:5000/allUsers?AccountType=${accountType}`)
+        queryFn: () => fetch(`https://laptopella.vercel.app/allUsers?AccountType=${accountType}`)
         .then(res=>res.json())
     })
    
