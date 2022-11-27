@@ -1,8 +1,17 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const MyOrder = () => {
-    const data = useLoaderData()
+    const {user}= useContext(AuthContext)
+    const [data,setData]= useState([])
+
+    useEffect(()=>{
+        fetch(`http://localhost:5000/orders?email=${user?.email}`)
+           .then(res => res.json())
+           .then(data => setData(data) )
+    },[user?.email])
+
     console.log(data)
     return (
         <div className='container mx-auto my-20 shadow-xl'>

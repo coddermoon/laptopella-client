@@ -60,7 +60,7 @@ const SideNav = ({children}) => {
             
          <div>
          
-       <NavLink to='/dashboard/seller'  className="link">
+       <NavLink  className="link">
             <div className="icon"><FaUserAlt/></div>
             <div style={{display: isOpen ? "block" : "none"}} className="link_text">Resaler</div>
         </NavLink>  
@@ -84,7 +84,7 @@ const SideNav = ({children}) => {
             userType === "Buyer" && 
             <NavLink to='/dashboard/user'  className="link" >
             <div className="icon"><FaUserAlt/></div>
-            <div style={{display: isOpen ? "block" : "none"}} className="link_text">User</div>
+            <div style={{display: isOpen ? "block" : "none"}} className="link_text">My Orders</div>
         </NavLink>
   
            }

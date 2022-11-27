@@ -4,7 +4,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import MainLayout from "../Layout/MainLayout";
 import Admin from "../pages/Dashboard/Admin/Admin";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
-import Seller from "../pages/Dashboard/Seller/Seller/Seller";
+
 import Home from "../pages/Homepage/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/Login/SignUp";
@@ -15,6 +15,9 @@ import NotFound from "../pages/Shared/NotFound";
 import Shop from "../pages/ShopPage/Shop/Shop";
 import PrivateRoute from "./PrivetRoute";
 import Buyer from '../pages/Dashboard/Buyer/Buyer'
+
+import SellerProducts from "../pages/Dashboard/Seller/Products/SellerProducts";
+import AddProduct from "../pages/Dashboard/Seller/AddProduct/AddProduct";
 
 const routes = createBrowserRouter([
     {
@@ -31,7 +34,7 @@ const routes = createBrowserRouter([
             }
             ,{
                 path:'/orders',
-                loader:()=> fetch('http://localhost:5000/orders'),
+               
                 element:<MyOrder/>
             }
             ,{
@@ -60,10 +63,7 @@ const routes = createBrowserRouter([
         path:'/dashboard',
         element:<DashboardLayout/>,
         children:[
-{
-            path:'/dashboard/seller',
-            element:<Seller/>
-},
+
 {
             path:'/dashboard/admin',
             element:<Admin/>
@@ -77,6 +77,17 @@ const routes = createBrowserRouter([
     path:'/dashboard/admin/users',
     
     element: <Buyer/>
+},{
+    path:'/dashboard/seller/products',
+    element:<SellerProducts/>
+},
+{
+    path:'/dashboard/seller/addProduct',
+    element: <AddProduct/>
+},
+{
+    path:'/dashboard/user',
+    element: <MyOrder/>
 }
         ]
     }
