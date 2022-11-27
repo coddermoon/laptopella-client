@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import './sidebar.css'
-import { FaBars, FaSellsy, FaTh,  FaUserAlt } from 'react-icons/fa'
+import { FaBars, FaPlus, FaSellsy, FaShopify, FaTh,  FaUserAlt } from 'react-icons/fa'
 import { GoReport } from 'react-icons/go'
 import { NavLink } from 'react-router-dom';
 import useAdmin from '../../../hooks/useAdmin';
@@ -58,10 +58,25 @@ const SideNav = ({children}) => {
 
             userType === "Seller" && 
             
-            <NavLink to='/dashboard/seller'  className="link">
+         <div>
+         
+       <NavLink to='/dashboard/seller'  className="link">
             <div className="icon"><FaUserAlt/></div>
             <div style={{display: isOpen ? "block" : "none"}} className="link_text">Resaler</div>
-        </NavLink>
+        </NavLink>  
+
+       <NavLink to='/dashboard/seller/products'  className="link">
+            <div className="icon"><FaShopify/></div>
+            <div style={{display: isOpen ? "block" : "none"}} className="link_text">My Products</div>
+        </NavLink>  
+
+       <NavLink to='/dashboard/seller/addProduct'  className="link">
+            <div className="icon"><FaPlus/></div>
+            <div style={{display: isOpen ? "block" : "none"}} className="link_text">Add Product</div>
+        </NavLink>  
+        
+        
+         </div>
 
            }
            {
