@@ -14,6 +14,7 @@ import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import NotFound from "../pages/Shared/NotFound";
 import Shop from "../pages/ShopPage/Shop/Shop";
 import PrivateRoute from "./PrivetRoute";
+import Buyer from '../pages/Dashboard/Buyer/Buyer'
 
 const routes = createBrowserRouter([
     {
@@ -69,13 +70,13 @@ const routes = createBrowserRouter([
 },
 {
     path:'/dashboard/admin/seller',
-  
+    loader:()=> fetch(`http://localhost:5000/allUsers?AccountType=Seller`),
     element:<AllUsers/>
 },
 {
     path:'/dashboard/admin/users',
-    loader:()=> fetch(`http://localhost:5000/allUsers?AccountType=Buyer`),
-    element:<AllUsers/>
+    
+    element: <Buyer/>
 }
         ]
     }
