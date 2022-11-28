@@ -20,6 +20,7 @@ import SellerProducts from "../pages/Dashboard/Seller/Products/SellerProducts";
 import AddProduct from "../pages/Dashboard/Seller/AddProduct/AddProduct";
 import AdminRoute from "./AdminRoute";
 import CommingSoon from "../pages/Shared/Comming/CommingSoon";
+import Wishlist from "../pages/Wishlist/Wistlist/Wishlist";
 
 const routes = createBrowserRouter([
     {
@@ -38,6 +39,11 @@ const routes = createBrowserRouter([
                 path:'/orders',
                
                 element:<PrivateRoute><MyOrder/></PrivateRoute>
+            }
+            ,{
+                path:'/wishlist',
+               
+                element:<PrivateRoute><Wishlist/></PrivateRoute>
             }
             ,{
                 path:'/shop/:id',
