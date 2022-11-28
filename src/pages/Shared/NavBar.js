@@ -2,7 +2,7 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 
-import { Link} from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import logo from '../../assets/image/logo.png'
 import { AuthContext } from "../../Contexts/AuthProvider";
 
@@ -16,9 +16,10 @@ const NavBar = () => {
   logOut()
   .then(res=>{
     toast.success('logout successFull')
+    Navigate('/login')
   })
   .catch(err=>{
-    toast.error(err.message)
+    toast.error("try again")
   })
  }
 

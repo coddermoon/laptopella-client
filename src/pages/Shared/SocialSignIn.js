@@ -15,7 +15,7 @@ const {socialSignIn} = useContext(AuthContext)
 socialSignIn(provider)
 .then(result=>{
 const user = result.user;
-  console.log(user);
+  
 
 })
 
