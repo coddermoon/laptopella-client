@@ -19,7 +19,7 @@ const NavBar = () => {
     Navigate('/login')
   })
   .catch(err=>{
-    toast.error("try again")
+    console.error(err.message)
   })
  }
 

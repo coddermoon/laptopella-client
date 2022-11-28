@@ -16,10 +16,10 @@ const Payment = () => {
     return (
         <div className='container mx-auto'>
             <div>
-            <h3 className="text-3xl text-center">Payment</h3>
-            <h3 className="text-3xl text-center">title</h3>
-            <p className="text-xl">Please pay <strong>$price</strong> to persuce</p>
-            <div className='w-96 my-12 mx-auto'>
+            <h3 className="text-3xl text-center mt-8">Payment Now for pursucse</h3>
+            
+         
+            <div className='w-1/2 h-[600px] my-12 mx-auto'>
                 <Elements stripe={stripePromise}>
                     <PaymentForm
                         product={product}

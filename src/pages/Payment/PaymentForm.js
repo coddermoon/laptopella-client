@@ -96,8 +96,8 @@ const [processing,setProcessing]= useState(false)
   };
 
   return (
-    <div className="shadow mx-auto d-flex items-center justify-center">
-      <form onSubmit={handleSubmit}>
+    <div className="shadow mx-auto mt-20 my-2 ">
+      <form onSubmit={handleSubmit} className="my-5 h-[300px] shadow-2xl pt-20 px-10 " >
         <CardElement
           options={{
             style: {
