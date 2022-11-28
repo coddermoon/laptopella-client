@@ -21,6 +21,7 @@ import AddProduct from "../pages/Dashboard/Seller/AddProduct/AddProduct";
 import AdminRoute from "./AdminRoute";
 import CommingSoon from "../pages/Shared/Comming/CommingSoon";
 import Wishlist from "../pages/Wishlist/Wistlist/Wishlist";
+import WishTable from "../pages/WishTable/WishTable";
 
 const routes = createBrowserRouter([
     {
@@ -43,7 +44,7 @@ const routes = createBrowserRouter([
             ,{
                 path:'/wishlist',
                
-                element:<PrivateRoute><Wishlist/></PrivateRoute>
+                element:<PrivateRoute><WishTable/></PrivateRoute>
             }
             ,{
                 path:'/shop/:id',

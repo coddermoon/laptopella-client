@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
-import ProductsCard from '../../Shared/ProductsCard/ProductsCard';
+import { AuthContext } from '../../Contexts/AuthProvider';
+import ProductsCard from '../Shared/ProductsCard/ProductsCard';
 
-const Wishlist = () => {
+
+const WishTable = () => {
     const {user}= useContext(AuthContext)
     const [data,setData]= useState([])
     useEffect(()=>{
-        fetch(`https://laptopella.vercel.app/wishlist?email=${user?.email}&&limit=3`)
+        fetch(`https://laptopella.vercel.app/wishlist?email=${user?.email}`)
            .then(res => res.json())
            .then(data => setData(data) )
     },[user?.email])
@@ -32,4 +33,4 @@ const Wishlist = () => {
     );
 };
 
-export default Wishlist;
+export default WishTable;

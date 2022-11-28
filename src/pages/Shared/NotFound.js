@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PrimaryButton from '../../components/Button/PrimaryButton';
+
 
 const NotFound = () => {
     return (

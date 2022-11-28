@@ -5,8 +5,12 @@ import StarRatings from 'react-star-ratings';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 
+
 const ProductsCard = ({product}) => {
-    console.log(product)
+    const {user}= useContext(AuthContext)
+
+
+  
     // const {user}= useContext(AuthContext);
     const [ fill, setFill] = useState(false)
     const {productInfo,_id}= product
@@ -15,14 +19,18 @@ const ProductsCard = ({product}) => {
     const {count,stars}= ratings
 
     const  handleWishList = (product)=>{
-        
+       
+        const dbProd ={...product}
+        dbProd.email = user?.email
+        dbProd.color ="red"
+        delete dbProd._id
 
-       fetch(`http://localhost:5000/wishlist`,{
+       fetch(`https://laptopella.vercel.app/wishlist`,{
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(product)
+        body: JSON.stringify(dbProd)
 
        })
        .then(res=>res.json())
@@ -59,7 +67,7 @@ toast.success('added successfully')
            <div className='flex items-center'>
             <button onClick={()=>handleWishList(product)}  className={'w-8 text-center mr-2 '}>
 
-            <svg xmlns="http://www.w3.org/2000/svg" fill={"none"} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill={product.color  ? product.color  : "none"} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
 </svg>
 

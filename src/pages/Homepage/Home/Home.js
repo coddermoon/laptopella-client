@@ -15,7 +15,7 @@ const Home = () => {
             <Hero/>
             <Brands/>
             <Wishlist/>
-          <div className='text-center'>
+          <div className='text-center mt-20'>
           <Link to='/shop' className='bg-primary px-8 py-3 text-[#fff] font-semibold  hover:bg-gray-700' >Show All Product</Link>
           </div>
             <Subscription/>
