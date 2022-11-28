@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 
 
 const useAdmin = email => {
-    const [userType, setUserType] = useState(false);
-    const [isUserLoading, setIsUserLoading] = useState(true);
+    const [userType, setUserType] = useState(false); 
+       const [isAdminLoading, setIsAdminLoading] = useState(true);
     useEffect(() => {
         if (email) {
             fetch(`https://laptopella.vercel.app/users/admin/${email}`)
@@ -11,12 +11,14 @@ const useAdmin = email => {
                 .then(data => {
                
                     setUserType(data.accountType);
-                    setIsUserLoading(false);
+                    setIsAdminLoading(false);
                 })
+            
         }
+
     }, [email])
     
-    return [userType, isUserLoading]
+    return [userType, isAdminLoading]
 }
 
 export default useAdmin;

@@ -9,8 +9,8 @@ const AdminRoute = ({children}) => {
     const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const location = useLocation();
 
-    if ( isAdminLoading) {
-        return <LazyLoading/>
+    if (loading || isAdminLoading) {
+        return <LazyLoading></LazyLoading>
     }
 
     if (user && isAdmin) {
@@ -18,6 +18,8 @@ const AdminRoute = ({children}) => {
     }
 
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+
+ 
 };
 
 export default AdminRoute;
