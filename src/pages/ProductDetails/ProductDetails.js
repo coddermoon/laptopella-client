@@ -20,7 +20,7 @@ const ProductDetails = () => {
 <div className='grid grid-cols-6 gap-2'>
 
     
-    <div class="col-span-4">
+    <div className="col-span-4">
         <button className='bg-[#E7EDEE] py-12 px-5'>
         <img src={imageUrl} alt="" />
         </button>

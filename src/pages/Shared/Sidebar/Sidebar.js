@@ -10,7 +10,7 @@ const SideNav = ({children}) => {
     const { user } = useContext(AuthContext);
     const [userType] = useAdmin(user?.email)
     
-
+console.log(userType)
 
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);

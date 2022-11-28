@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UseTitle from '../../../hooks/UseTitle';
 
-import Products from '../../Shared/Products/Products';
+
+import Wishlist from '../../Wishlist/Wistlist/Wishlist';
 import Brands from '../Brands/Brands';
 import Hero from '../Hero/Hero';
 import Subscription from '../Subscription/Subscription';
 
 const Home = () => {
+    UseTitle('Home')
     return (
         <main >
             <Hero/>
             <Brands/>
-            <Products/>
+            <Wishlist/>
           <div className='text-center'>
           <Link to='/shop' className='bg-primary px-8 py-3 text-[#fff] font-semibold  hover:bg-gray-700' >Show All Product</Link>
           </div>
