@@ -1,6 +1,6 @@
 # Project name : Laptopella
 ## live link : https://laptopella.web.app
-### Description :Laptopella is a website for buying and selling used laptops. It features a homepage, a product page, an order page, and a wishlist. There are three types of accounts: admin, seller, and buyer. The admin page has specific features for managing seller and normal user accounts. Users can add products and view their own products, while admins can delete and verify user accounts. The website also includes a payment gateway. The front-end is built with React, React Router, React Query, Axios, and React Hot Toast, among other technologies. The back-end uses Express, MongoDB, JSON Web Token, and CORS, among other technologies.
+### Description : <p> Laptopella is a website for buying and selling used laptops. It features a homepage, a product page, an order page, and a wishlist. There are three types of accounts: admin, seller, and buyer. The admin page has specific features for managing seller and normal user accounts. Users can add products and view their own products, while admins can delete and verify user accounts. The website also includes a payment gateway. The front-end is built with React, React Router, React Query, Axios, and React Hot Toast, among other technologies. The back-end uses Express, MongoDB, JSON Web Token, and CORS, among other technologies.</>
 
 #### admin email : admin2@gmail.com
 #### password:Admin@123
